@@ -28,6 +28,8 @@ fn not_found(req: &Request) -> String {
 
 #[launch]
 fn rocket() -> _ {
+    println!("Server started on port 27000");
+
     rocket::build()
         .mount("/", routes![index])
         .mount("/", routes![files])
