@@ -4,3 +4,6 @@ limits = { forms = "64 kB", json = "10 MiB" }
 
 [debug]
 port=27000
+
+[release]
+port=27000
