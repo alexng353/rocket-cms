@@ -1,6 +1,10 @@
-[defaults]
-address = "127.0.0.1"
-limits = { forms: "64 kB", json = "10 MiB" }
+[package]
+name = "rocket-cms"
+version = "0.1.0"
+edition = "2021"
 
-[release]
-port=27000
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = "0.5.0-rc.2"
+rocket_contrib = "0.4.11"
