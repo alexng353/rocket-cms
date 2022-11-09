@@ -1,24 +1,18 @@
 #[macro_use]
 extern crate rocket;
 
-#[get("/")]
-fn index() -> &'static str {
-    "I love EduBeyond"
-}
-
 use std::{fs::read_to_string, path::Path, path::PathBuf};
 
-use rocket::{fs::NamedFile, request::FromSegments, response::content::RawHtml, Error, Request};
-#[get("/test/<test>")]
-fn test(test: String) -> RawHtml<String> {
-    // let test = read_to_string("./static/index.html").unwrap();
-    let response;
-    if test != "" {
-        response = read_to_string(format!("./static/{}", test)).unwrap()
-    } else {
-        response = read_to_string("./static/index.html").unwrap();
-    }
-    RawHtml(response)
+use rocket::{
+    fs::NamedFile,
+    response::{self, content::RawHtml},
+    Request,
+};
+
+#[get("/")]
+fn index() -> response::content::RawHtml<String> {
+    let html = read_to_string("templates/index.html").unwrap();
+    RawHtml(html)
 }
 
 #[get("/<file..>")]
@@ -36,7 +30,6 @@ fn not_found(req: &Request) -> String {
 fn rocket() -> _ {
     rocket::build()
         .mount("/", routes![index])
-        .mount("/", routes![test])
         .mount("/", routes![files])
         .register("/", catchers![not_found])
 }
