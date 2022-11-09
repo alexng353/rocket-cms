@@ -2,5 +2,5 @@
 address = "127.0.0.1"
 limits = { forms = "64 kB", json = "10 MiB" }
 
-[release]
+[debug]
 port=27000
